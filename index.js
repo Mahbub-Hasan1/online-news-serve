@@ -25,15 +25,15 @@ client.connect(err => {
     }
     
     else {
-        const registrationCollection = client.db(`${process.env.DB_NAME}`).collection("UserRegistrationData")
-        const sliderImagesCollection = client.db(`${process.env.DB_NAME}`).collection("sliderImages")
-        const adminDataCollection = client.db(`${process.env.DB_NAME}`).collection("adminData")
-        const updateMarqueeCollection = client.db(`${process.env.DB_NAME}`).collection("updateMarquee")
-        const aboutUsCollection = client.db(`${process.env.DB_NAME}`).collection("aboutUs")
-        const ourEventCollection = client.db(`${process.env.DB_NAME}`).collection("ourEvent")
-        const latestUpdateCollection = client.db(`${process.env.DB_NAME}`).collection("latestUpdate")
-        const photoGalleryCollection = client.db(`${process.env.DB_NAME}`).collection("photoGallery")
-        const WatchFeaturedVideoCollection = client.db(`${process.env.DB_NAME}`).collection("FeaturedVideo")
+        const registrationCollection = client.db("OnlineNewsApplicants").collection("UserRegistrationData")
+        const sliderImagesCollection = client.db("OnlineNewsApplicants").collection("sliderImages")
+        const adminDataCollection = client.db("OnlineNewsApplicants").collection("adminData")
+        const updateMarqueeCollection = client.db("OnlineNewsApplicants").collection("updateMarquee")
+        const aboutUsCollection = client.db("OnlineNewsApplicants").collection("aboutUs")
+        const ourEventCollection = client.db("OnlineNewsApplicants").collection("ourEvent")
+        const latestUpdateCollection = client.db("OnlineNewsApplicants").collection("latestUpdate")
+        const photoGalleryCollection = client.db("OnlineNewsApplicants").collection("photoGallery")
+        const WatchFeaturedVideoCollection = client.db("OnlineNewsApplicants").collection("FeaturedVideo")
         console.log("connected successfully")
 
 
@@ -297,11 +297,7 @@ client.connect(err => {
                 .then(result => {
                     res.send(result.modifiedCount > 0);
                 })
-        })
-
-
-
-
+})
 
     }
 
