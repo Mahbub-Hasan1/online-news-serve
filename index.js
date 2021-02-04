@@ -1,6 +1,7 @@
 var express = require('express')
 var cors = require('cors')
 var app = express()
+const db = require('db')
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const ObjectId = require('mongodb').ObjectId;
@@ -13,7 +14,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-const uri = `mongodb://onlineNews:onlineNewsPss@cluster0-shard-00-00.nsfyh.mongodb.net:27017,cluster0-shard-00-01.nsfyh.mongodb.net:27017,cluster0-shard-00-02.nsfyh.mongodb.net:27017/OnlineNewsApplicants?ssl=true&replicaSet=atlas-o69sfx-shard-0&authSource=admin&retryWrites=true&w=majority`
+const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-shard-00-00.nsfyh.mongodb.net:27017,cluster0-shard-00-01.nsfyh.mongodb.net:27017,cluster0-shard-00-02.nsfyh.mongodb.net:27017/${process.env.DB_NAME}?ssl=true&replicaSet=atlas-o69sfx-shard-0&authSource=admin&retryWrites=true&w=majority`
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -24,15 +25,15 @@ client.connect(err => {
     }
     
     else {
-        const registrationCollection = client.db("OnlineNewsApplicants").collection("UserRegistrationData")
-        const sliderImagesCollection = client.db("OnlineNewsApplicants").collection("sliderImages")
-        const adminDataCollection = client.db("OnlineNewsApplicants").collection("adminData")
-        const updateMarqueeCollection = client.db("OnlineNewsApplicants").collection("updateMarquee")
-        const aboutUsCollection = client.db("OnlineNewsApplicants").collection("aboutUs")
-        const ourEventCollection = client.db("OnlineNewsApplicants").collection("ourEvent")
-        const latestUpdateCollection = client.db("OnlineNewsApplicants").collection("latestUpdate")
-        const photoGalleryCollection = client.db("OnlineNewsApplicants").collection("photoGallery")
-        const WatchFeaturedVideoCollection = client.db("OnlineNewsApplicants").collection("FeaturedVideo")
+        const registrationCollection = client.db(`${process.env.DB_NAME}`).collection("UserRegistrationData")
+        const sliderImagesCollection = client.db(`${process.env.DB_NAME}`).collection("sliderImages")
+        const adminDataCollection = client.db(`${process.env.DB_NAME}`).collection("adminData")
+        const updateMarqueeCollection = client.db(`${process.env.DB_NAME}`).collection("updateMarquee")
+        const aboutUsCollection = client.db(`${process.env.DB_NAME}`).collection("aboutUs")
+        const ourEventCollection = client.db(`${process.env.DB_NAME}`).collection("ourEvent")
+        const latestUpdateCollection = client.db(`${process.env.DB_NAME}`).collection("latestUpdate")
+        const photoGalleryCollection = client.db(`${process.env.DB_NAME}`).collection("photoGallery")
+        const WatchFeaturedVideoCollection = client.db(`${process.env.DB_NAME}`).collection("FeaturedVideo")
         console.log("connected successfully")
 
 
@@ -309,4 +310,4 @@ client.connect(err => {
 
 
 
-app.listen(5050)
+app.listen(process.env.PORT || 5050)
