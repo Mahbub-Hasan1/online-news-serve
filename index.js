@@ -1,7 +1,7 @@
 var express = require('express')
 var cors = require('cors')
 var app = express()
-const db = require('db')
+require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const ObjectId = require('mongodb').ObjectId;
@@ -34,7 +34,6 @@ client.connect(err => {
         const latestUpdateCollection = client.db("OnlineNewsApplicants").collection("latestUpdate")
         const photoGalleryCollection = client.db("OnlineNewsApplicants").collection("photoGallery")
         const WatchFeaturedVideoCollection = client.db("OnlineNewsApplicants").collection("FeaturedVideo")
-        console.log("connected successfully")
 
 
         // registration form ara start 
